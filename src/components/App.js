@@ -52,7 +52,7 @@ class App extends React.Component {
       if (e.key === "Enter") {
         this.addItem();
       } else {
-        const regex = /[a-z]+/gi;
+        const regex = /[a-zñ]+/gi;
 
         if (
           item.match(regex) &&
