@@ -1,5 +1,6 @@
 import React from "react";
 import ItemSelected from "./ItemSelected";
+import SearchBox from "./SearchBox";
 
 class App extends React.Component {
   state = {
@@ -29,11 +30,11 @@ class App extends React.Component {
     let itemsSelected = this.state.itemsSelected.slice();
 
     if (list.includes(itemSearched)) {
-      itemsSelected.forEach((itemSelected) => {
-        if (itemSelected[itemSearched]) {
+      for (let i = 0; i < itemsSelected.length; i++) {
+        if (itemsSelected[i][itemSearched]) {
           return;
         }
-      });
+      }
 
       itemsSelected.push({ [itemSearched]: 1 });
 
@@ -79,6 +80,7 @@ class App extends React.Component {
 
     this.setState({ itemsSelected });
   };
+
   onDecrement = (item) => {
     let itemsSelected = this.state.itemsSelected.slice();
 
@@ -90,6 +92,7 @@ class App extends React.Component {
 
     this.setState({ itemsSelected });
   };
+
   onRemove = (item) => {
     let itemsSelected = this.state.itemsSelected.slice();
 
@@ -130,31 +133,12 @@ class App extends React.Component {
     let debounce = this.onInput();
 
     return [
-      <div className="search-box" key="search-box">
-        <label htmlFor="shopping">
-          My shopping list
-          <div className="input-box">
-            <input
-              type="search"
-              list="shopping-list"
-              name="shopping"
-              id="shopping"
-              onInput={debounce}
-              onKeyDown={debounce}
-              onTouchStart={debounce}
-            />
-            <button className="add" onClick={this.addItem}>
-              Add
-            </button>
-          </div>
-        </label>
-
-        <datalist id="shopping-list">
-          {this.state.list.map((item, i) => (
-            <option value={item} key={"option" + i} />
-          ))}
-        </datalist>
-      </div>,
+      <SearchBox
+        key="search-box"
+        debounce={debounce}
+        addItem={this.addItem}
+        list={this.state.list}
+      />,
       <div className="items" key="items">
         {this.state.itemsSelected.map((item, i) => (
           <ItemSelected
