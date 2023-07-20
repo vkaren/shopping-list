@@ -1,0 +1,75 @@
+:root {
+  --blue: #3190b9;
+  --dark-blue: #184875;
+  --light-blue: #48bdff;
+  --very-light-blue: #d6e6f9;
+  --white: #ffff;
+}
+
+@font-face {
+  font-family: "Montserrat Alternates";
+  src: url("./assets/fonts/MontserratAlternates-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat Alternates";
+  src: url("./assets/fonts/MontserratAlternates-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat Alternates";
+  src: url("./assets/fonts/MontserratAlternates-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+body {
+  background: var(--blue);
+}
+header {
+  padding: 8rem 0;
+  font-size: 1.4rem;
+  color: var(--white);
+  text-align: center;
+}
+main {
+  width: 100%;
+  max-width: 60rem;
+  min-width: 320px;
+  height: 40rem;
+  margin: 0 auto;
+  padding: 5rem;
+  border-radius: 25px;
+  border: 1px solid var(--light-blue);
+  background: var(--white);
+  box-shadow: 12px -18px 55px -24px rgba(25, 108, 150, 0.86);
+  -webkit-box-shadow: 12px -18px 55px -24px rgba(25, 108, 150, 0.86);
+  -moz-box-shadow: 12px -18px 55px -24px rgba(25, 108, 150, 0.86);
+}
+h1 {
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  main {
+    height: 77vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
