@@ -3,8 +3,8 @@ import ShoppingList from "../ShoppingList";
 
 const App = () => (
   <>
-    {/* <Searcher />
-    <ShoppingList /> */}
+    <Searcher />
+    {/* <ShoppingList /> */}
   </>
 );
 
