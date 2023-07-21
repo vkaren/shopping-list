@@ -49,6 +49,11 @@ const App = () => {
     setAddedItems(newAddedItems);
   };
 
+  const deleteItem = (name) => {
+    const newAddedItems = addedItems.filter((item) => item.name !== name);
+    setAddedItems(newAddedItems);
+  };
+
   const saveInLocalstorage = (shoppingList) => {
     localStorage.setItem("shopping-list", JSON.stringify(shoppingList));
   };
@@ -60,7 +65,11 @@ const App = () => {
         searchedItems={searchedItems}
         addItem={addItem}
       />
-      <ShoppingList addedItems={addedItems} setNewAmount={setNewAmount} />
+      <ShoppingList
+        addedItems={addedItems}
+        setNewAmount={setNewAmount}
+        deleteItem={deleteItem}
+      />
     </>
   );
 };

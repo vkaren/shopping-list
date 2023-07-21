@@ -4,7 +4,7 @@ import plusIcon from "../../assets/icons/icon-plus.png";
 import minusIcon from "../../assets/icons/icon-minus.png";
 import "./styles.css";
 
-const ShoppingItem = ({ name, amount, setNewAmount }) => {
+const ShoppingItem = ({ name, amount, setNewAmount, deleteItem }) => {
   // state = {
   //   disabled: false,
   // };
@@ -28,6 +28,10 @@ const ShoppingItem = ({ name, amount, setNewAmount }) => {
       const newAmount = amount - 1;
       setNewAmount({ name, newAmount });
     }
+  };
+
+  const onClickDelete = () => {
+    deleteItem(name);
   };
 
   return (
@@ -72,7 +76,7 @@ const ShoppingItem = ({ name, amount, setNewAmount }) => {
         </div>
       </div>
 
-      <button className="item_delete-btn">
+      <button className="item_delete-btn" onClick={onClickDelete}>
         <img src={deleteIcon} alt="Delete item" />
       </button>
     </div>
