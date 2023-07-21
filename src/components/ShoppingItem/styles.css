@@ -1,0 +1,81 @@
+/*  Shopping list item  */
+.shopping-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+/*  Shopping list item - Drag icon  */
+.item_drag-icon {
+  width: 2.2rem;
+  opacity: 0;
+  cursor: move;
+}
+
+/*  Shopping list item - Delete button */
+.item_delete-btn {
+  width: 1.8rem;
+  border: none;
+  background: transparent;
+  opacity: 0;
+}
+.item_delete-btn:hover img {
+  opacity: 0.7;
+}
+.item_delete-btn:active img {
+  opacity: 1;
+}
+
+/*  Shopping list item content  */
+.item_content_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+}
+
+/*  Shopping list item content - Check input  */
+.item_content-check {
+  margin-right: 1rem;
+}
+
+/*  Shopping list item content - Description  */
+.item_content-description {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/*  Shopping list item content - Set amount buttons  */
+.item_content_set-amount-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 5rem;
+  opacity: 0;
+}
+.item_content_set-amount-btns button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  max-width: 20px;
+  padding: 0.4rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray);
+}
+
+/*  Shopping list item - On hover */
+.shopping-list__item:hover .item_drag-icon,
+.shopping-list__item:hover .item_delete-btn,
+.shopping-list__item:hover .item_content_set-amount-btns {
+  opacity: 1;
+}
+.shopping-list__item:hover .item_content_container {
+  background: var(--light-gray);
+}

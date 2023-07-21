@@ -4,6 +4,7 @@
   --light-blue: #48bdff;
   --very-light-blue: #d6e6f9;
   --white: #ffff;
+  --gray: #cccccc;
   --light-gray: #f1f1f1;
 }
 
@@ -71,10 +72,14 @@ button {
   cursor: pointer;
 }
 button:hover {
-  opacity: 0.9;
+  opacity: 0.7;
 }
 button:active {
   opacity: 1;
+}
+img {
+  max-width: 100%;
+  min-width: 100%;
 }
 
 @media (max-width: 600px) {

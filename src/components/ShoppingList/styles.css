@@ -1,0 +1,10 @@
+/*  Shopping list container  */
+.shopping-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80%;
+  margin: 3rem 0;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
