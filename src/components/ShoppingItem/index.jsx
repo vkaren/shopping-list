@@ -4,7 +4,16 @@ import plusIcon from "../../assets/icons/icon-plus.png";
 import minusIcon from "../../assets/icons/icon-minus.png";
 import "./styles.css";
 
-const ShoppingItem = ({ name, amount, setNewAmount, deleteItem }) => {
+const ShoppingItem = ({
+  id,
+  name,
+  amount,
+  setNewAmount,
+  deleteItem,
+  onDragStart,
+  onDragOver,
+  onDrop,
+}) => {
   // state = {
   //   disabled: false,
   // };
@@ -35,14 +44,13 @@ const ShoppingItem = ({ name, amount, setNewAmount, deleteItem }) => {
   };
 
   return (
-    <div
-      className="shopping-list__item"
-      draggable="true"
-      //   onDragStart={this.props.onDragStart}
-      //   onDragOver={this.props.onDragOver}
-      //   onDrop={this.props.onDrop}
-    >
-      <div className="item_drag-icon">
+    <div id={id} className="shopping-list__item" draggable="true">
+      <div
+        className="item_drag-icon"
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+      >
         <img src={dragIcon} alt="Drag item" />
       </div>
 

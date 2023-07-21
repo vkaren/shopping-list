@@ -7,6 +7,7 @@ const App = () => {
   const [addedItems, setAddedItems] = useState(
     JSON.parse(localStorage.getItem("shopping-list")) || []
   );
+  let draggedItem = null;
 
   useEffect(() => {
     saveInLocalstorage(addedItems);
@@ -54,6 +55,32 @@ const App = () => {
     setAddedItems(newAddedItems);
   };
 
+  const onDragStart = (e) => {
+    draggedItem = e.currentTarget.parentElement;
+  };
+
+  const onDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const onDrop = (e) => {
+    e.preventDefault();
+
+    if (draggedItem) {
+      const indexDraggedItem = draggedItem.id - "";
+      const indexDroppedItem = e.currentTarget.parentElement.id - "";
+      const draggedItemAdded = addedItems[indexDraggedItem];
+
+      let newAddedItems = addedItems.filter(
+        (_, index) => indexDraggedItem !== index
+      );
+
+      newAddedItems.splice(indexDroppedItem, 0, draggedItemAdded);
+
+      setAddedItems(newAddedItems);
+    }
+  };
+
   const saveInLocalstorage = (shoppingList) => {
     localStorage.setItem("shopping-list", JSON.stringify(shoppingList));
   };
@@ -69,6 +96,9 @@ const App = () => {
         addedItems={addedItems}
         setNewAmount={setNewAmount}
         deleteItem={deleteItem}
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
       />
     </>
   );
