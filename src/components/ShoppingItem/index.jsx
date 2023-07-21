@@ -4,7 +4,7 @@ import plusIcon from "../../assets/icons/icon-plus.png";
 import minusIcon from "../../assets/icons/icon-minus.png";
 import "./styles.css";
 
-const ShoppingItem = ({ name, amount }) => {
+const ShoppingItem = ({ name, amount, setNewAmount }) => {
   // state = {
   //   disabled: false,
   // };
@@ -17,6 +17,18 @@ const ShoppingItem = ({ name, amount }) => {
   //   }
   // };
   // checkRef = React.createRef();
+
+  const onClickIncrementAmount = () => {
+    const newAmount = amount + 1;
+    setNewAmount({ name, newAmount });
+  };
+
+  const onClickDecrementAmount = () => {
+    if (amount > 1) {
+      const newAmount = amount - 1;
+      setNewAmount({ name, newAmount });
+    }
+  };
 
   return (
     <div
@@ -45,14 +57,14 @@ const ShoppingItem = ({ name, amount }) => {
         <div className="item_content_set-amount-btns">
           <button
             className="decrement-btn"
-            //   onClick={() => this.props.onDecrement(this.props.item)}
+            onClick={onClickDecrementAmount}
             //   disabled={this.state.disabled}
           >
             <img src={minusIcon} alt="Decrement amount" />
           </button>
           <button
             className="increment-btn"
-            //   onClick={() => this.props.onIncrement(this.props.item)}
+            onClick={onClickIncrementAmount}
             //   disabled={this.state.disabled}
           >
             <img src={plusIcon} alt="Increment amount" />

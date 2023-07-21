@@ -38,6 +38,17 @@ const App = () => {
     }
   };
 
+  const setNewAmount = ({ name, newAmount }) => {
+    const newAddedItems = addedItems.map((item) => {
+      if (item.name === name) {
+        item.amount = newAmount;
+      }
+      return item;
+    });
+
+    setAddedItems(newAddedItems);
+  };
+
   const saveInLocalstorage = (shoppingList) => {
     localStorage.setItem("shopping-list", JSON.stringify(shoppingList));
   };
@@ -49,7 +60,7 @@ const App = () => {
         searchedItems={searchedItems}
         addItem={addItem}
       />
-      <ShoppingList addedItems={addedItems} />
+      <ShoppingList addedItems={addedItems} setNewAmount={setNewAmount} />
     </>
   );
 };
