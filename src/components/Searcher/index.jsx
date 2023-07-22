@@ -27,7 +27,7 @@ const Searcher = ({ getItems, addItem, searchedItems }) => {
         timer = setTimeout(() => {
           getItems(itemSearched);
           setItemToAdd(itemSearched);
-        }, 500);
+        }, 250);
       }
     };
   };

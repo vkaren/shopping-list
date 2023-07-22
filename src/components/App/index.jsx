@@ -59,7 +59,7 @@ const App = () => {
   const setNewAmount = ({ name, newAmount }) => {
     const newAddedItems = addedItems.map((item) => {
       if (item.name === name) {
-        item.amount = newAmount;
+        return { ...item, amount: newAmount };
       }
       return item;
     });
@@ -92,6 +92,7 @@ const App = () => {
     setAddedItems(newAddedItems);
   };
 
+  // Sort items functionality, only available on desktops
   const onDragStart = (e) => {
     draggedItem = e.currentTarget.parentElement;
   };
@@ -102,18 +103,20 @@ const App = () => {
 
   const onDrop = (e) => {
     e.preventDefault();
-    const droppedItem = e.currentTarget.parentElement;
+    const droppedItem = e.currentTarget;
 
     if (draggedItem && droppedItem.draggable) {
       const indexDraggedItem = draggedItem.id - "";
-      const indexDroppedItem = droppedItem.id - "";
-      const draggedItemAdded = addedItems[indexDraggedItem];
+      const indexDroppedItem = droppedItem.parentElement.id - "";
+      const itemToOrder = addedItems[indexDraggedItem];
 
+      // Delete old position
       let newAddedItems = addedItems.filter(
         (_, index) => indexDraggedItem !== index
       );
 
-      newAddedItems.splice(indexDroppedItem, 0, draggedItemAdded);
+      // Set new position
+      newAddedItems.splice(indexDroppedItem, 0, itemToOrder);
 
       setAddedItems(newAddedItems);
     }
@@ -126,8 +129,8 @@ const App = () => {
   return (
     <>
       <Searcher
-        getItems={getItems}
         searchedItems={searchedItems}
+        getItems={getItems}
         addItem={addItem}
       />
       <ShoppingList

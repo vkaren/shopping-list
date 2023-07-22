@@ -81,7 +81,7 @@
   background: var(--gray);
 }
 
-/*  Shopping list item - Default and checked state */
+/*  Shopping list item - Default and on checked state */
 .item_drag-icon {
   opacity: 0;
   visibility: visible;
@@ -108,6 +108,16 @@
   opacity: 1;
   visibility: visible;
 }
-.shopping-list__item:hover .item_content_container {
+.shopping-list__item:hover .item_content_container,
+.shopping-list__item:active .item_content_container {
   background: var(--light-gray);
+}
+
+@media (max-width: 600px) {
+  .item_drag-icon,
+  .shopping-list__item:hover .item_drag-icon,
+  .shopping-list__item:active .item_drag-icon {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

@@ -18,6 +18,7 @@ const ShoppingList = ({
           id={index}
           name={item.name}
           amount={item.amount}
+          isItemChecked={item.isChecked}
           setNewAmount={setNewAmount}
           deleteItem={deleteItem}
           onCheckItem={onCheckItem}
