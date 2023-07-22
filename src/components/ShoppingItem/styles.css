@@ -81,17 +81,21 @@
   background: var(--gray);
 }
 
-/*  Shopping list item - Default state */
-.item_drag-icon,
+/*  Shopping list item - Default and checked state */
+.item_drag-icon {
+  opacity: 0;
+  visibility: visible;
+}
 .item_delete-btn,
 .item_content_set-amount-btns,
+.item_drag-icon.item-checked,
+.item_content_set-amount-btns.item-checked,
 .shopping-list__item:hover .item_drag-icon.item-checked,
-.shopping-list__item:hover .item_content_set-amount-btns.item-checked {
+.shopping-list__item:hover .item_content_set-amount-btns.item-checked,
+.shopping-list__item:active .item_drag-icon.item-checked,
+.shopping-list__item:active .item_content_set-amount-btns.item-checked {
   opacity: 0;
   visibility: hidden;
-}
-.item_drag-icon {
-  visibility: visible;
 }
 
 /*  Shopping list item - On hover */

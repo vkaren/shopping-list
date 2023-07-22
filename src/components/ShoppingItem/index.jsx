@@ -41,7 +41,7 @@ const ShoppingItem = ({
   };
 
   return (
-    <div id={id} className="shopping-list__item" draggable="true">
+    <div id={id} className="shopping-list__item" draggable={!isChecked}>
       <div
         className={`item_drag-icon ${isChecked && "item-checked"}`}
         onDragStart={onDragStart}

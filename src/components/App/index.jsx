@@ -102,10 +102,11 @@ const App = () => {
 
   const onDrop = (e) => {
     e.preventDefault();
+    const droppedItem = e.currentTarget.parentElement;
 
-    if (draggedItem) {
+    if (draggedItem && droppedItem.draggable) {
       const indexDraggedItem = draggedItem.id - "";
-      const indexDroppedItem = e.currentTarget.parentElement.id - "";
+      const indexDroppedItem = droppedItem.id - "";
       const draggedItemAdded = addedItems[indexDraggedItem];
 
       let newAddedItems = addedItems.filter(
