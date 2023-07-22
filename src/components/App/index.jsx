@@ -28,6 +28,10 @@ const App = () => {
   const addBeforeCheckedItem = ({ itemsList, itemToAdd }) => {
     const firstItemCheckedIndex = itemsList.findIndex((item) => item.isChecked);
 
+    if (firstItemCheckedIndex < 0) {
+      return [...itemsList, itemToAdd];
+    }
+
     return [
       ...itemsList.slice(0, firstItemCheckedIndex),
       itemToAdd,
