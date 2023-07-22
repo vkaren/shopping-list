@@ -5,6 +5,7 @@ const ShoppingList = ({
   addedItems,
   setNewAmount,
   deleteItem,
+  onCheckItem,
   onDragStart,
   onDragOver,
   onDrop,
@@ -19,6 +20,7 @@ const ShoppingList = ({
           amount={item.amount}
           setNewAmount={setNewAmount}
           deleteItem={deleteItem}
+          onCheckItem={onCheckItem}
           onDragStart={onDragStart}
           onDragOver={onDragOver}
           onDrop={onDrop}

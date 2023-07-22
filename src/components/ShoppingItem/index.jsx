@@ -3,6 +3,7 @@ import deleteIcon from "../../assets/icons/icon-delete.png";
 import plusIcon from "../../assets/icons/icon-plus.png";
 import minusIcon from "../../assets/icons/icon-minus.png";
 import "./styles.css";
+import { useState } from "react";
 
 const ShoppingItem = ({
   id,
@@ -10,22 +11,12 @@ const ShoppingItem = ({
   amount,
   setNewAmount,
   deleteItem,
+  onCheckItem,
   onDragStart,
   onDragOver,
   onDrop,
 }) => {
-  // state = {
-  //   disabled: false,
-  // };
-
-  // disabled = () => {
-  //   if (this.checkRef.current && this.checkRef.current.checked) {
-  //     this.setState({ disabled: true });
-  //   } else {
-  //     this.setState({ disabled: false });
-  //   }
-  // };
-  // checkRef = React.createRef();
+  const [isChecked, setIsChecked] = useState(false);
 
   const onClickIncrementAmount = () => {
     const newAmount = amount + 1;
@@ -43,10 +34,16 @@ const ShoppingItem = ({
     deleteItem(name);
   };
 
+  const onClickCheck = (e) => {
+    const isChecked = e.currentTarget.checked;
+    setIsChecked(isChecked);
+    onCheckItem({ name, isChecked });
+  };
+
   return (
     <div id={id} className="shopping-list__item" draggable="true">
       <div
-        className="item_drag-icon"
+        className={`item_drag-icon ${isChecked && "item-checked"}`}
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDrop={onDrop}
@@ -58,27 +55,24 @@ const ShoppingItem = ({
         <div className="item_content">
           <input
             type="checkbox"
+            id={name}
             className="item_content-check"
-            // id={this.props.id}
-            // ref={this.ref}
-            // onChange={this.disabled}
+            onChange={onClickCheck}
           />
-          <span className="item_content-description">{`${amount} ${name}`}</span>
+          <label htmlFor={name}>
+            <span className="item_content-description">{`${amount} ${name}`}</span>
+          </label>
         </div>
 
-        <div className="item_content_set-amount-btns">
-          <button
-            className="decrement-btn"
-            onClick={onClickDecrementAmount}
-            //   disabled={this.state.disabled}
-          >
+        <div
+          className={`item_content_set-amount-btns ${
+            isChecked && "item-checked"
+          }`}
+        >
+          <button className="decrement-btn" onClick={onClickDecrementAmount}>
             <img src={minusIcon} alt="Decrement amount" />
           </button>
-          <button
-            className="increment-btn"
-            onClick={onClickIncrementAmount}
-            //   disabled={this.state.disabled}
-          >
+          <button className="increment-btn" onClick={onClickIncrementAmount}>
             <img src={plusIcon} alt="Increment amount" />
           </button>
         </div>

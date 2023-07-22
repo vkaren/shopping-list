@@ -25,6 +25,16 @@ const App = () => {
     }
   };
 
+  const addBeforeCheckedItem = ({ itemsList, itemToAdd }) => {
+    const firstItemCheckedIndex = itemsList.findIndex((item) => item.isChecked);
+
+    return [
+      ...itemsList.slice(0, firstItemCheckedIndex),
+      itemToAdd,
+      ...itemsList.slice(firstItemCheckedIndex),
+    ];
+  };
+
   const addItem = (itemToAdd) => {
     const isItemAlreadyAdded = addedItems.find(
       (item) => item.name === itemToAdd
@@ -34,8 +44,15 @@ const App = () => {
       const itemToAddInfo = {
         name: itemToAdd,
         amount: 1,
+        isChecked: false,
       };
-      setAddedItems((addedItems) => [...addedItems, itemToAddInfo]);
+
+      let newAddedItems = addBeforeCheckedItem({
+        itemsList: addedItems,
+        itemToAdd: itemToAddInfo,
+      });
+
+      setAddedItems(newAddedItems);
     }
   };
 
@@ -52,6 +69,26 @@ const App = () => {
 
   const deleteItem = (name) => {
     const newAddedItems = addedItems.filter((item) => item.name !== name);
+    setAddedItems(newAddedItems);
+  };
+
+  const onCheckItem = ({ name, isChecked }) => {
+    const itemToCheck = addedItems.find((item) => item.name === name);
+    let newAddedItems = addedItems.filter((item) => item.name !== name);
+
+    if (isChecked) {
+      itemToCheck.isChecked = true;
+
+      newAddedItems.push(itemToCheck);
+    } else {
+      itemToCheck.isChecked = false;
+
+      newAddedItems = addBeforeCheckedItem({
+        itemsList: newAddedItems,
+        itemToAdd: itemToCheck,
+      });
+    }
+
     setAddedItems(newAddedItems);
   };
 
@@ -96,6 +133,7 @@ const App = () => {
         addedItems={addedItems}
         setNewAmount={setNewAmount}
         deleteItem={deleteItem}
+        onCheckItem={onCheckItem}
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDrop={onDrop}
