@@ -40,11 +40,21 @@ _src/components/ShoppingItem_
 <img src="./readme_imgs/dragStart.PNG" width="400px">
 
 On drag over, the default behavior is prevented to allow the drop event.
+<<<<<<< HEAD
+=======
+
+Finally, on the drop event, the app checks if the item being dragged is allowed to be dropped, retrieves the indexes, and updates the list accordingly.
+>>>>>>> 9539d9e6162b69bd043bac64e65e086b8e3de7c8
 
 Finally, on the drop event, the app checks if the item being dragged is allowed to be dropped, retrieves the indexes, and updates the list accordingly.
 
+<<<<<<< HEAD
 _src/context_
 
 <img src="./readme_imgs/drop.PNG" width="400px">
 
+=======
+<img src="./readme_imgs/drop.PNG" width="400px">
+
+>>>>>>> 9539d9e6162b69bd043bac64e65e086b8e3de7c8
 Feel free to use and enhance this shopping list app for your convenience!
