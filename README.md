@@ -1,72 +1,50 @@
 # My shopping list
 
-This is a shopping list app where the user can search for an item, add it to their list, set the desired amount, check them off and delete them. And if the user is on a desktop, it has an additional feature which is to order them
+Welcome to the Shopping List app! This application allows users to efficiently manage their shopping lists by searching for items, adding them with desired quantities, checking them off, and even ordering them on desktop.
 
-<img src="./readme_imgs/app-search.png" width="300px">
+<img src="./readme_imgs/app-search.png" width="200px">
 
-<img src="./readme_imgs/app.png" width="300px">
+<img src="./readme_imgs/app.png" width="200px">
 
 ## Built with
 
-React
-Vite
+- React
+- Vite
 
-## How works?
+## How it Works
 
-When the user starts typing on the searcher, a debounce function is invoked to call the food API (https://api.frontendeval.com/fake/food/:food) and get the list of matches. Selecting an item and pressing the Enter key or clicking the Add button adds the item to the addedItems list only if the match list includes it and it has not already been added.
+The app utilizes a debounce function in the Searcher component to interact with the food API (https://api.frontendeval.com/fake/food/:food) as the user types. The results are displayed in a dropdown and the item is added only if it matches the search and has not been added before.
 
 _src/components/Searcher_
 
-<img src="./readme_imgs/Searcher.PNG" width="600px">
+<img src="./readme_imgs/Searcher.PNG" width="400px">
 
-<img src="./readme_imgs/Searcher-datalist.PNG" width="600px">
-
-_src/components/App_
-
-<img src="./readme_imgs/getItems.PNG" width="600px">
-
-<img src="./readme_imgs/addItem.PNG" width="600px">
-
-The addedItems list is made so the checked items are in the last position and the unchecked before them, and whenever this list changes will be saved on localstorage
+The addedItems list is made so the checked items are placed at the end and the unchecked before them. The list is stored in local storage to persist changes.
 
 _src/components/App_
 
-<img src="./readme_imgs/onCheck.PNG" width="600px">
+<img src="./readme_imgs/addItem.PNG" width="400px">
 
-<img src="./readme_imgs/saveLocal.PNG" width="600px">
+<img src="./readme_imgs/saveLocal.PNG" width="300px">
 
-When setting a new amount to an item, the setNewAmmount function will get through the list and edit the item with its new amount
-
-_src/components/App_
-
-<img src="./readme_imgs/setNewAmount.PNG" width="600px">
-
-When deleting an item, the addedItems list will be filtered
-
-_src/components/App_
-
-<img src="./readme_imgs/delete.PNG" width="600px">
-
-The desktop order functionality works by drag and drop events, the draggable element is the drag icon.
+Desktop users can enjoy drag-and-drop functionality to reorder their shopping list. The draggable element is represented by a drag icon in the ShoppingItem component.
 
 _src/components/ShoppingItem_
 
-<img src="./readme_imgs/sort.PNG" width="600px">
+<img src="./readme_imgs/sort.PNG" width="400px">
 
-On the drag start event, it will get the parent element of the icon (the item container to be reordered).
-
-_src/components/App_
-
-<img src="./readme_imgs/dragStart.PNG" width="600px">
-
-On the drag over event it will prevent the default behavior to allow the drop event
+On drag start, the app captures the parent element of the drag icon (the item container to be reordered).
 
 _src/components/App_
 
-<img src="./readme_imgs/dragOver.PNG" width="600px">
+<img src="./readme_imgs/dragStart.PNG" width="400px">
 
-On the drop event, the sort functionality will only occur if there is a item dragged and the icon where it's being dropped on is draggable. And if so, it will get the index of the dragged item and the item where it will be dropped, delete its old position and set the new one based on these indexes
+On drag over, the default behavior is prevented to allow the drop event.
+
+Finally, on the drop event, the app checks if the item being dragged is allowed to be dropped, retrieves the indexes, and updates the list accordingly.
 
 _src/components/App_
 
-<img src="./readme_imgs/drop.PNG" width="600px">
+<img src="./readme_imgs/drop.PNG" width="400px">
+
+Feel free to use and enhance this shopping list app for your convenience!
