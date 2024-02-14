@@ -1,22 +1,14 @@
-import { useState } from "react";
-import dragIcon from "../../assets/icons/icon-drag.png";
-import deleteIcon from "../../assets/icons/icon-delete.png";
-import plusIcon from "../../assets/icons/icon-plus.png";
-import minusIcon from "../../assets/icons/icon-minus.png";
+import { useContext, useState } from "react";
+import { AppContext } from "@context";
+import dragIcon from "@icons/icon-drag.png";
+import deleteIcon from "@icons/icon-delete.png";
+import plusIcon from "@icons/icon-plus.png";
+import minusIcon from "@icons/icon-minus.png";
 import "./styles.css";
 
-const ShoppingItem = ({
-  id,
-  name,
-  amount,
-  isItemChecked,
-  setNewAmount,
-  deleteItem,
-  onCheckItem,
-  onDragStart,
-  onDragOver,
-  onDrop,
-}) => {
+const ShoppingItem = ({ id, name, amount, isItemChecked }) => {
+  const { setNewAmount, deleteItem, onCheckItem, setDraggedItem, onDrop } =
+    useContext(AppContext);
   const [isChecked, setIsChecked] = useState(isItemChecked);
 
   const onClickIncrementAmount = () => {
@@ -39,6 +31,15 @@ const ShoppingItem = ({
     const isChecked = e.currentTarget.checked;
     setIsChecked(isChecked);
     onCheckItem({ name, isChecked });
+  };
+
+  // Sort items functionality, only available on desktops
+  const onDragStart = (e) => {
+    setDraggedItem(e.currentTarget.parentElement);
+  };
+
+  const onDragOver = (e) => {
+    e.preventDefault();
   };
 
   return (

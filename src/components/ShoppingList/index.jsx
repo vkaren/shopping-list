@@ -1,15 +1,11 @@
-import ShoppingItem from "../ShoppingItem";
+import { useContext } from "react";
+import { AppContext } from "@context";
+import ShoppingItem from "@components/ShoppingItem";
 import "./styles.css";
 
-const ShoppingList = ({
-  addedItems,
-  setNewAmount,
-  deleteItem,
-  onCheckItem,
-  onDragStart,
-  onDragOver,
-  onDrop,
-}) => {
+const ShoppingList = () => {
+  const { addedItems } = useContext(AppContext);
+
   return (
     <section className="shopping-list">
       {addedItems.map((item, index) => (
@@ -19,12 +15,6 @@ const ShoppingList = ({
           name={item.name}
           amount={item.amount}
           isItemChecked={item.isChecked}
-          setNewAmount={setNewAmount}
-          deleteItem={deleteItem}
-          onCheckItem={onCheckItem}
-          onDragStart={onDragStart}
-          onDragOver={onDragOver}
-          onDrop={onDrop}
         />
       ))}
     </section>

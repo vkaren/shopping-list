@@ -1,16 +1,11 @@
-import { useEffect, useState } from "react";
+import { createRef, useContext, useState } from "react";
+import { AppContext } from "@context";
 import "./styles.css";
 
-const Searcher = ({ getItems, addItem, searchedItems }) => {
-  const [itemToAdd, setItemToAdd] = useState("");
-  const [isEnterPressed, setIsEnterPressed] = useState(false);
-
-  useEffect(() => {
-    if (isEnterPressed) {
-      addItem(itemToAdd);
-      setIsEnterPressed(false);
-    }
-  }, [isEnterPressed]);
+const Searcher = () => {
+  const { addItem } = useContext(AppContext);
+  const [searchedItems, setSearchedItems] = useState([]);
+  const formRef = createRef();
 
   const onSearchItem = () => {
     let timer;
@@ -26,26 +21,34 @@ const Searcher = ({ getItems, addItem, searchedItems }) => {
       if (allowedCharacters.test(itemSearched)) {
         timer = setTimeout(() => {
           getItems(itemSearched);
-          setItemToAdd(itemSearched);
         }, 250);
       }
     };
   };
 
-  const onClickAdd = (e) => {
-    e.preventDefault();
-    addItem(itemToAdd);
-  };
+  const getItems = async (itemSearched) => {
+    try {
+      const url = `https://api.frontendeval.com/fake/food/${itemSearched}`;
+      const response = await fetch(url);
+      const itemSearchedList = await response.json();
 
-  const onEnterKeyPress = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      setIsEnterPressed(true);
+      setSearchedItems(itemSearchedList);
+    } catch (err) {
+      throw new Error(err);
     }
   };
 
+  const onClickAdd = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(formRef.current);
+    const itemToAdd = formData.get("searched-item");
+
+    addItem({ itemToAdd, searchedItems });
+  };
+
   return (
-    <form className="searcher-form">
+    <form ref={formRef} className="searcher-form">
       <input
         className="searcher-form__input"
         type="search"
@@ -53,7 +56,6 @@ const Searcher = ({ getItems, addItem, searchedItems }) => {
         list="searched-items"
         placeholder="Search..."
         autoComplete="off"
-        onKeyDown={onEnterKeyPress}
         onInput={onSearchItem()}
       />
 
