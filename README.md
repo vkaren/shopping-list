@@ -3,6 +3,7 @@
 Welcome to the Shopping List app! This application allows users to efficiently manage their shopping lists by searching for items, adding them with desired quantities, checking them off, and even ordering them on desktop.
 
 <img src="./readme_imgs/app-search.png" width="200px">
+<img src="./readme_imgs/app-search.png" width="200px">
 
 <img src="./readme_imgs/app.png" width="200px">
 
@@ -37,7 +38,7 @@ On drag start, the app captures the parent element of the drag icon (the item co
 
 _src/components/ShoppingItem_
 
-<img src="./readme_imgs/dragStart.PNG" width="400px">
+<img src="./readme_imgs/dragStart.PNG" width="600px">
 
 On drag over, the default behavior is prevented to allow the drop event.
 
