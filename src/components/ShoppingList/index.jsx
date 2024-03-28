@@ -13,7 +13,7 @@ const ShoppingList = () => {
           key={item.name}
           id={index}
           name={item.name}
-          amount={item.amount}
+          initialAmount={item.amount}
           isItemChecked={item.isChecked}
         />
       ))}

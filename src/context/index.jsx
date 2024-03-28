@@ -38,7 +38,7 @@ function AppProvider({ children }) {
     }
   };
 
-  const setNewAmount = ({ name, newAmount }) => {
+  const saveNewAmountItemLS = ({ name, newAmount }) => {
     const newAddedItems = addedItems.map((item) => {
       if (item.name === name) {
         return { ...item, amount: newAmount };
@@ -46,7 +46,7 @@ function AppProvider({ children }) {
       return item;
     });
 
-    setAddedItems(newAddedItems);
+    saveInLocalstorage(newAddedItems);
   };
 
   const deleteItem = (name) => {
@@ -115,7 +115,7 @@ function AppProvider({ children }) {
         addedItems,
         addItem,
         deleteItem,
-        setNewAmount,
+        saveNewAmountItemLS,
         setDraggedItem,
         onCheckItem,
         onDrop,

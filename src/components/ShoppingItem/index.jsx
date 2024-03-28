@@ -6,20 +6,28 @@ import plusIcon from "@icons/icon-plus.png";
 import minusIcon from "@icons/icon-minus.png";
 import "./styles.css";
 
-const ShoppingItem = ({ id, name, amount, isItemChecked }) => {
-  const { setNewAmount, deleteItem, onCheckItem, setDraggedItem, onDrop } =
-    useContext(AppContext);
+const ShoppingItem = ({ id, name, initialAmount, isItemChecked }) => {
+  const {
+    saveNewAmountItemLS,
+    deleteItem,
+    onCheckItem,
+    setDraggedItem,
+    onDrop,
+  } = useContext(AppContext);
+  const [amount, setAmount] = useState(initialAmount);
   const [isChecked, setIsChecked] = useState(isItemChecked);
 
   const onClickIncrementAmount = () => {
     const newAmount = amount + 1;
-    setNewAmount({ name, newAmount });
+    setAmount(newAmount);
+    saveNewAmountItemLS({ name, newAmount });
   };
 
   const onClickDecrementAmount = () => {
     if (amount > 1) {
       const newAmount = amount - 1;
-      setNewAmount({ name, newAmount });
+      setAmount(newAmount);
+      saveNewAmountItemLS({ name, newAmount });
     }
   };
 
